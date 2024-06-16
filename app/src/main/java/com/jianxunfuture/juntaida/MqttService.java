@@ -31,23 +31,12 @@ public class MqttService extends Service {
         String password = "502E06B1-2AC8-4AF6-8F88-E23CB77E632E";
 
         client = MqttClient.getInstance();
+        client.setBroker("tcp://broker.juntaida.net:1883");
         client.init(this.getApplicationContext(), productId, username, password);
         client.setMessageArrivedListener((topic, message) -> {
             Log.i("test", topic + " " + message);
             client.publishData("From client message! You message:" + message);
         });
         client.connect();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-//                client.disConnect();
-            }
-        }).start();
     }
 }

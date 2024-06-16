@@ -24,12 +24,12 @@ public class MqttClient {
     public static final String BROADCAST_MQTT_CONNECTION_LOST = "com.jianxunfuture.mqtt.connectionLost";
 
 
-    private       MqttAndroidClient  mqttClient;
-    private       MqttConnectOptions mqttOptions;
-    private       Context            context;
-    private final String             broker = "tcp://broker.juntaida.net:1883";
-    private       String             publishTopicControl;
-    private       String             publishTopicData;
+    private MqttAndroidClient  mqttClient;
+    private MqttConnectOptions mqttOptions;
+    private Context            context;
+    private String             broker = "";
+    private String             publishTopicControl;
+    private String             publishTopicData;
 
     private boolean isManualDisConnected;
 
@@ -53,6 +53,11 @@ public class MqttClient {
             }
         }
         return instance;
+    }
+
+    public void setBroker(String broker)
+    {
+        this.broker = broker;
     }
 
     public void init(Context context, String productId, String username, String password) {
