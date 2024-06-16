@@ -23,4 +23,4 @@ Add it in your root build.gradle at the end of repositories:
 
 ## 使用
 
-详情请看MqttServer.class文件
+详情请看MqttService.class文件
