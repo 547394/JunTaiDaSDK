@@ -1,0 +1,3 @@
+rootProject.name = "JunTaiDa"
+include ':app'
+include ':JunTaiDaSDK'
