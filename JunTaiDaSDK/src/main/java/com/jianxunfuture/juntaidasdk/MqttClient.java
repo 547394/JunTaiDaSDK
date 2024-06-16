@@ -55,8 +55,7 @@ public class MqttClient {
         return instance;
     }
 
-    public void setBroker(String broker)
-    {
+    public void setBroker(String broker) {
         this.broker = broker;
     }
 
@@ -132,7 +131,12 @@ public class MqttClient {
                     }
                     Log.e(TAG, exception.toString());
                     if (!mqttClient.isConnected()) {
-                        new Handler().postDelayed(() -> connect(), 10 * 1000);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                connect();
+                            }
+                        }, 10 * 1000);
                     }
                 }
             });

@@ -5,15 +5,13 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
 import com.jianxunfuture.juntaidasdk.MqttClient;
+import com.jianxunfuture.juntaidasdk.MqttMessageArrivedListener;
 
 public class MqttService extends Service {
 
     private MqttClient client;
 
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -33,9 +31,13 @@ public class MqttService extends Service {
         client = MqttClient.getInstance();
         client.setBroker("tcp://broker.juntaida.net:1883");
         client.init(this.getApplicationContext(), productId, username, password);
-        client.setMessageArrivedListener((topic, message) -> {
-            Log.i("test", topic + " " + message);
-            client.publishData("From client message! You message:" + message);
+        client.setMessageArrivedListener(new MqttMessageArrivedListener() {
+            @Override
+            public void messageArrived(String topic, String message) {
+
+                Log.i("test", topic + " " + message);
+                client.publishData("From client message! You message:" + message);
+            }
         });
         client.connect();
     }
