@@ -31,10 +31,10 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        // 以下值应由你们的项目确定，其中需要确保 deviceId 唯一
         final String deviceId   = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         final String deviceName = Build.MODEL;
-        final String typeName   = Build.PRODUCT;
+        final String carType    = Build.PRODUCT;
         // 启动后台服务
         // startService(new Intent(MainActivity.this, MqttService.class));
 
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                httpClient.register(deviceName, deviceId, typeName, new HttpResponseCallback() {
+                httpClient.register(deviceName, deviceId, carType, new HttpResponseCallback() {
                     @Override
                     public void onSuccess(JsonMap result) {
                         // 需要永久存储Token以便后续使用
@@ -70,7 +70,6 @@ public class MainActivity extends Activity {
                 });
             }
         });
-
 
         /*
          * 注销
@@ -142,6 +141,9 @@ public class MainActivity extends Activity {
             }
         });
 
+        /*
+         * 获取APK列表
+         */
         Button getAPKList = findViewById(R.id.getAPKList);
         getAPKList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +160,7 @@ public class MainActivity extends Activity {
                         // 请求下一页 page = page+1 再次调用该方法
                         JsonList rows = result.getList("rows");
                         for (int i = 0; i < rows.size(); i++) {
-                            // 请参见 108 行的代码结构
+                            // 请参见 106 行的代码结构
                             Log.i("getAPKList", rows.getJsonMap(i).getString("name"));
                         }
                     }
@@ -170,6 +172,7 @@ public class MainActivity extends Activity {
                 });
             }
         });
+
         /*
          * 反馈
          */
