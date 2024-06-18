@@ -34,7 +34,9 @@ public class MqttService extends Service {
         client.setMessageArrivedListener(new MqttMessageArrivedListener() {
             @Override
             public void messageArrived(String topic, String message) {
+                // 接收到来自服务器的数据
                 Log.i("test", topic + " " + message);
+                // 回复服务器
                 client.publishData("From client message! You message:" + message);
             }
         });
