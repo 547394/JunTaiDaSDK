@@ -128,6 +128,7 @@ public class MainActivity extends Activity {
 
                             @Override
                             public void onDownloadFailed(Exception e) {
+                                // TODO：下载时可能因为超过下载次数限制而非网络问题下载失败
                                 Toast.makeText(MainActivity.this, "下载失败", Toast.LENGTH_SHORT).show();
                             }
                         });
