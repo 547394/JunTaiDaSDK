@@ -24,4 +24,10 @@
         <service android:name=".MqttService" />
     </application>
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"
+        tools:ignore="ManifestOrder" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ManifestOrder,ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:ignore="ManifestOrder,ScopedStorage" />
 </manifest>

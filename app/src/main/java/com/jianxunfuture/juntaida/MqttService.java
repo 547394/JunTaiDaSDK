@@ -34,11 +34,11 @@ public class MqttService extends Service {
         client.setMessageArrivedListener(new MqttMessageArrivedListener() {
             @Override
             public void messageArrived(String topic, String message) {
-
                 Log.i("test", topic + " " + message);
                 client.publishData("From client message! You message:" + message);
             }
         });
         client.connect();
+
     }
 }

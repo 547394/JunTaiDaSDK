@@ -5,7 +5,7 @@ android {
 
     defaultConfig {
         applicationId "com.jianxunfuture.juntaida"
-        minSdk 21
+        minSdk 27
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -24,4 +24,6 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(path: ':JunTaiDaSDK')
+
+    implementation 'com.github.kongzue:BaseJson:1.2.0'
 }

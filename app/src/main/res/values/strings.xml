@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">JunTaiDa</string>
+    <string name="register">注册</string>
+    <string name="unregister">注销</string>
+    <string name="report">反馈</string>
+    <string name="getAPkFile">获取单个APK文件</string>
+    <string name="getAPKList">获取APK文件列表</string>
 </resources>
