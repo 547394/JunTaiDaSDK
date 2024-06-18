@@ -148,7 +148,7 @@ public class HttpClient {
         parameter.add("name", name);
         parameter.add("exact", exact);
 
-        HttpRequest.GET(context, "/data/apk", new Parameter().add("Token", Token), parameter, new JsonResponseListener() {
+        HttpRequest.GET(context, "/data/apk", new Parameter().add("Token", Token), getParams(parameter), new JsonResponseListener() {
             @Override
             public void onResponse(JsonMap main, Exception error) {
                 result(main, error, responseCallback);
@@ -173,7 +173,7 @@ public class HttpClient {
         parameter.add("carType", carType);
         parameter.add("page", page);
 
-        HttpRequest.GET(context, "/data/list", new Parameter().add("Token", Token), parameter, new JsonResponseListener() {
+        HttpRequest.GET(context, "/data/list", new Parameter().add("Token", Token), getParams(parameter), new JsonResponseListener() {
             @Override
             public void onResponse(JsonMap main, Exception error) {
                 result(main, error, responseCallback);
@@ -189,8 +189,8 @@ public class HttpClient {
      * @param file               存储文件对象
      * @param onDownloadListener 下载回调
      */
-    public void download(int id, String area, File file, final OnDownloadListener onDownloadListener) {
-        String      url         = "/data/download?id=" + id + "&area=" + area + "&Token=" + Token;
+    public void download(String id, String area, File file, final OnDownloadListener onDownloadListener) {
+        String      url         = "/apk/download?id=" + id + "&area=" + area + "&Token=" + Token;
         HttpRequest httpRequest = HttpRequest.build(context, url);
         httpRequest.doDownload(file, new com.kongzue.baseokhttp.listener.OnDownloadListener() {
             @Override
@@ -224,7 +224,8 @@ public class HttpClient {
             responseCallback.onFail("data is empty");
             return;
         }
-        HttpRequest.POST(context, "/data/report", new Parameter().add("Token", Token), parameter, new JsonResponseListener() {
+        // 防止因data中的非法字符引起签名失败，故该接口无需签名
+        HttpRequest.POST(context, "/apk/report", new Parameter().add("Token", Token), parameter, new JsonResponseListener() {
             @Override
             public void onResponse(JsonMap main, Exception error) {
                 result(main, error, responseCallback);

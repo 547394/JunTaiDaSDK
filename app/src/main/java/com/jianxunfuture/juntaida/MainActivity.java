@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
         // 启动后台服务
         // startService(new Intent(MainActivity.this, MqttService.class));
 
-        httpClient = new HttpClient(MainActivity.this, "https://can.juntaida.net/api/v1");
+        httpClient = new HttpClient(MainActivity.this, "https://can.juntaida.net/api/v2");
         httpClient.init("M48E4K3NYQ69Q0IK", "S7Q6PHUG9AMR2GCT108QBB5WUCEEV6RR");
         // 开启调试模式
         httpClient.setDebug(true);
@@ -114,7 +114,7 @@ public class MainActivity extends Activity {
 
                         // TODO:请求读写磁盘权限
                         File file = new File(new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "Download"), name + ".apk");
-                        httpClient.download(node.getInt("id"), node.getString("area"), file, new OnDownloadListener() {
+                        httpClient.download(node.getString("id"), node.getString("area"), file, new OnDownloadListener() {
                             @Override
                             public void onDownloadSuccess(File file) {
                                 Toast.makeText(MainActivity.this, "文件已下载完成：" + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
