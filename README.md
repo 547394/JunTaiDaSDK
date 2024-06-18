@@ -23,4 +23,6 @@ Add it in your root build.gradle at the end of repositories:
 
 ## 使用
 
-详情请看[MqttService.java](https://github.com/547394/JunTaiDaSDK/blob/495357af25fece6b2123eeae62ee87090a581e4a/app/src/main/java/com/jianxunfuture/juntaida/MainActivity.java)文件
+接口通讯示例请看[MainActivity.java](https://github.com/547394/JunTaiDaSDK/blob/495357af25fece6b2123eeae62ee87090a581e4a/app/src/main/java/com/jianxunfuture/juntaida/MainActivity.java)文件
+
+MQTT通讯示例请看[MqttService.java](https://github.com/547394/JunTaiDaSDK/blob/495357af25fece6b2123eeae62ee87090a581e4a/app/src/main/java/com/jianxunfuture/juntaida/MqttService.java)文件
