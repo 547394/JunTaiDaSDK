@@ -17,9 +17,13 @@ Add it in your root build.gradle at the end of repositories:
 
 
 	dependencies {
-	        implementation 'com.github.547394:JuntaiDaSDK:1.0.1'
+	        implementation 'com.github.547394:JuntaiDaSDK:1.0.3'
 	}
 
+
+## 最新版本
+
+[![](https://jitpack.io/v/547394/JunTaiDaSDK.svg)](https://jitpack.io/#547394/JunTaiDaSDK)
 
 ## 使用
 
