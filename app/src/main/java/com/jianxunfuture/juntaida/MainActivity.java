@@ -35,6 +35,8 @@ public class MainActivity extends Activity {
         final String deviceId   = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         final String deviceName = Build.MODEL;
         final String carType    = Build.PRODUCT;
+
+        final String batchName = "HT001";
         // 启动后台服务
         // startService(new Intent(MainActivity.this, MqttService.class));
 
@@ -53,7 +55,7 @@ public class MainActivity extends Activity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                httpClient.register(deviceName, deviceId, carType, new HttpResponseCallback() {
+                httpClient.register(deviceName, deviceId, carType, batchName, new HttpResponseCallback() {
                     @Override
                     public void onSuccess(JsonMap result) {
                         // 需要永久存储Token以便后续使用

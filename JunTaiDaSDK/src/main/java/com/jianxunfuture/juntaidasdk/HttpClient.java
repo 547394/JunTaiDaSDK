@@ -1,6 +1,7 @@
 package com.jianxunfuture.juntaidasdk;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.kongzue.baseokhttp.HttpRequest;
 import com.kongzue.baseokhttp.listener.JsonResponseListener;
@@ -99,14 +100,16 @@ public class HttpClient {
      * @param deviceName       设备名称，例如：HUAWEI-ATH-TL00H
      * @param deviceId         设备唯一标识，例如：8BN02179015937
      * @param carType          设备类型，例如：HUAWEI
+     * @param batchName        批次名称
      * @param responseCallback 执行回调
      * @link https://www.eolink.com/share/inside/9000c252d52ba71d961dc2cf46130e43/api/2942052/detail/54168105
      */
-    public void register(String deviceName, String deviceId, String carType, final HttpResponseCallback responseCallback) {
+    public void register(String deviceName, String deviceId, String carType, String batchName, final HttpResponseCallback responseCallback) {
         Parameter parameter = new Parameter();
         parameter.add("name", deviceName);
         parameter.add("UUID", deviceId);
         parameter.add("carType", carType);
+        parameter.add("batchName", batchName);
         HttpRequest.GET(context, "/system/register", getParams(parameter), new JsonResponseListener() {
             @Override
             public void onResponse(JsonMap main, Exception error) {
@@ -242,6 +245,7 @@ public class HttpClient {
      */
     private void result(JsonMap result, Exception error, HttpResponseCallback responseCallback) {
         if (error == null) {
+            Log.i("result", result.toString());
             if (result.getInt("code") == 0) {
                 responseCallback.onSuccess(result.getJsonMap("data"));
             } else {
